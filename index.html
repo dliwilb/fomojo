@@ -6,44 +6,22 @@
 <title>FOMOJO / 追高韭</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style>
-
-body{
-	font-family: 'Courier New';
-	font-size: 20px;
-}
-
-a {
-  color: white;
-  visited: white;
-  text-decoration: none;
-}
-
-a:hover {
-  color: gold;
-}
-
-p.kj {
-	font-family: 'Noto Sans TC', sans-serif;
-	text-align: center;
-	font-size: 24px;
-}
-
-table{
-  border: 0px solid black;
-  border-spacing: 10px;
-}
-
-tr, td {
-  border: 3px solid #444444;
-}
-
 </style>
+<link rel="stylesheet" href="css/fomojo-style.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap" rel="stylesheet"> 
 </head>
 <body style="color:#ffffff; background-color:#111111">
-<div align="center">
-<h2>FOMOJO / 追高韭</h2>
+<div style="text-align: center">
+  <h2>FOMOJO / 追高韭</h2>
+  <p><img width="350" src="https://bafybeiei7lz5q5gkx24nlscmp5b3hl5k4tvzntmdxk4gr37jz7lttqv57u.ipfs.infura-ipfs.io/"></p>
+  <span id="mint-cost"></span>
+  <input id="mint-quantity" type="number" value="1" min="1" max="10" style="width: 40px">
+  <button id="button-mint" onclick="mintFomojo()">MINT</button>
 </div>
+
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+<script src="script/contract-abi.js"></script>
+<script src="script/fomojo-mint.js"></script>
 </body>
 </html>
