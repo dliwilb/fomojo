@@ -79,7 +79,7 @@ async function getMintFee(){
 
 async function mintFomojo() {
 
-    if (document.getElementById('button-mint').innerHTML == 'Minted'){
+    if (document.getElementById('button-mint').innerHTML == 'Minted !'){
         document.getElementById('button-mint').innerHTML = 'MINT';
 
     } else {
@@ -100,11 +100,11 @@ async function mintFomojo() {
         console.log(mintedTokenId);
 
         document.getElementById('button-mint').innerHTML = 'Executing Mint...';
-        const txExecuteMint = await executeMint(`http://127.0.0.1:3000/mint?tokenID=${mintedTokenId}`);
+        const txExecuteMint = await executeMint(`http://dliwilb.herokuapp.com/mint?tokenID=${mintedTokenId}`);
         // const receiptExecuteMint = await txExecuteMint.wait();
         console.log(txExecuteMint);
 
-        document.getElementById('button-mint').innerHTML = 'Minted!';
+        document.getElementById('button-mint').innerHTML = 'Minted !';
     }
 
     // http://127.0.0.1:3000/mint?tokenID=1
