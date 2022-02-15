@@ -100,7 +100,7 @@ async function mintFomojo() {
         console.log(mintedTokenId);
 
         document.getElementById('button-mint').innerHTML = 'Executing Mint...';
-        const txExecuteMint = await executeMint(`http://dliwilb.herokuapp.com/mint?tokenID=${mintedTokenId}`);
+        const txExecuteMint = await executeMint(`https://dliwilb.herokuapp.com/mint?tokenID=${mintedTokenId}`);
         // const receiptExecuteMint = await txExecuteMint.wait();
         console.log(txExecuteMint);
 
