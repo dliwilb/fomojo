@@ -129,3 +129,15 @@ async function executeMint(api_uri) {
 
 	return myJSON;
 }
+
+function checkMintQuantity(){
+    const maxMintQuantity = 10;
+    const minMinQuantity = 1;
+    if ( document.getElementById('mint-quantity').value > maxMintQuantity ){
+        document.getElementById('mint-quantity').value = maxMintQuantity
+    }
+
+    if ( document.getElementById('mint-quantity').value < minMinQuantity ){
+        document.getElementById('mint-quantity').value = minMinQuantity
+    }
+}
