@@ -23,15 +23,15 @@ async function connectWallet() {
         try {
             const connectedAccount = await window.ethereum.request({ method: 'eth_requestAccounts' });
             isWalletConnected = true;
-            document.getElementById('connected-address').value = connectedAccount;
-            logToConsoleAndPage('log: wallet connected');
+            // document.getElementById('connected-address').value = connectedAccount;
+            // logToConsoleAndPage('log: wallet connected');
         }
         catch (error) {
             if (error.code === 4001) {
-                logToConsoleAndPage('log: connection rejected by user');
+                // logToConsoleAndPage('log: connection rejected by user');
             }
 
-            logToConsoleAndPage('log: cannot connect to wallet');
+            // logToConsoleAndPage('log: cannot connect to wallet');
         }
     }
 
@@ -46,14 +46,14 @@ async function switchNetwork(){
         });
 
         isNetworkConnected = true;
-        logToConsoleAndPage('log: switched to Testnet Rinkeby');
+        // logToConsoleAndPage('log: switched to Testnet Rinkeby');
     }
     catch (error) {
         if (error.code === 4001) {
-            logToConsoleAndPage('log: user rejected network switch');
+            // logToConsoleAndPage('log: user rejected network switch');
         }
 
-        logToConsoleAndPage('log: cannot switch to Testnet Rinkeby');
+        // logToConsoleAndPage('log: cannot switch to Testnet Rinkeby');
         console.log(isWalletConnected);
         console.log(isNetworkConnected);
     }    
@@ -83,6 +83,9 @@ async function mintFomojo() {
         document.getElementById('button-mint').innerHTML = 'MINT';
 
     } else {
+        connectWallet();
+        switchNetwork();
+
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
 
@@ -92,6 +95,7 @@ async function mintFomojo() {
         const mintQuantity = document.getElementById('mint-quantity').value;
             
         document.getElementById('button-mint').innerHTML = 'Commiting Mint...';
+        document.getElementById('spin-wheel').style.display = 'inline';
         const txCommitMint = await contract.commitMint(mintQuantity, 
             { value: BigInt(nftMintFee) * BigInt(mintQuantity) });
         const receiptCommitMint = await txCommitMint.wait();
@@ -108,6 +112,7 @@ async function mintFomojo() {
         }
 
         document.getElementById('button-mint').innerHTML = 'Minted !';
+        document.getElementById('spin-wheel').style.display = 'none';
     }
 
     // http://127.0.0.1:3000/mint?tokenID=1
