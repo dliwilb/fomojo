@@ -93,7 +93,7 @@ async function mintFomojo() {
             
         document.getElementById('button-mint').innerHTML = 'Commiting Mint...';
         const txCommitMint = await contract.commitMint(mintQuantity, 
-            { value: nftMintFee * mintQuantity });
+            { value: BigInt(nftMintFee) * BigInt(mintQuantity) });
         const receiptCommitMint = await txCommitMint.wait();
 
         for (let i = 0; i < receiptCommitMint.events.length; i+=2){
