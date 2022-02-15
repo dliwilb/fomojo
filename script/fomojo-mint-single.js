@@ -95,17 +95,14 @@ async function mintFomojo() {
         const txCommitMint = await contract.commitMint(mintQuantity, 
             { value: nftMintFee * mintQuantity });
         const receiptCommitMint = await txCommitMint.wait();
+        const mintedTokenId = receiptCommitMint.events[0].args[2].toNumber();
+        console.log(receiptCommitMint);
+        console.log(mintedTokenId);
 
-        for (let i = 0; i < receiptCommitMint.events.length; i+=2){
-            const mintedTokenId = receiptCommitMint.events[i].args[2].toNumber();
-            console.log(receiptCommitMint);
-            console.log(mintedTokenId);
-
-            document.getElementById('button-mint').innerHTML = `Executing Mint #${i/2 + 1}...`;
-            const txExecuteMint = await executeMint(`https://dliwilb.herokuapp.com/mint?tokenID=${mintedTokenId}`);
-            // const receiptExecuteMint = await txExecuteMint.wait();
-            console.log(txExecuteMint);
-        }
+        document.getElementById('button-mint').innerHTML = 'Executing Mint...';
+        const txExecuteMint = await executeMint(`https://dliwilb.herokuapp.com/mint?tokenID=${mintedTokenId}`);
+        // const receiptExecuteMint = await txExecuteMint.wait();
+        console.log(txExecuteMint);
 
         document.getElementById('button-mint').innerHTML = 'Minted !';
     }
